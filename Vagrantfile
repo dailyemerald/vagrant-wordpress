@@ -3,8 +3,8 @@
 Vagrant::Config.run do |config|
   config.vm.box = "base"
   
-  config.vm.forward_port 80,   8081
-  config.vm.forward_port 3306, 3307
+  config.vm.forward_port 80, 8080, :auto => true
+  config.vm.forward_port 3306, 3306, :auto => true
 
   config.vm.share_folder "wp-themes", "/var/www/wordpress/wp-content/themes", "./themes"
   config.vm.share_folder "wp-root", "/var/www/wordpress", "./wp-root"
