@@ -6,8 +6,8 @@ Vagrant::Config.run do |config|
   config.vm.forward_port 80, 8080, :auto => true
   config.vm.forward_port 3306, 3306, :auto => true
 
-  config.vm.share_folder "wp-themes", "/var/www/wordpress/wp-content/themes", "./themes"
-  config.vm.share_folder "wp-root", "/var/www/wordpress", "./wp-root"
+  config.vm.share_folder "wp-themes", "/var/www/wordpress/wp-content/themes", "./themes", :create => true
+  config.vm.share_folder "wp-root", "/var/www/wordpress", "./wp-root", :create => true
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "cookbooks"
