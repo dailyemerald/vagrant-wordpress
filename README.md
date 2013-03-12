@@ -1,21 +1,34 @@
 ## Getting Started ##
 
-First, install [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
+If you haven't, install [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
 
-Grab vagrant, librarian, etc:
+Then:
 
-	bundle
+	bash init.sh
 
-Grab the cookbooks (defined in Cheffile):
-	
+**OR** the hard way (this is the contents of the init.sh script):
+
+	bundle	
 	librarian-chef install
-
-And boot:
-
 	vagrant up
 	
-The 'Vagrantfile' runs the cookbooks to install mysql, fetch WordPress and install it, setup port forwarding and all of that.
+- *bundle* pulls the gems. *knife-solo*, *librarian*, *vagrant* specifically. 
+- *librarian-chef install* pulls the cookbooks from opscode. 
+- *vagrant up* runs the recipes fetched by Librarian and boots the VM. It also sets some config stuff, like setting the **root mysql password to 'helloworld'**
+
+### Connecting to ysql from the host machine ##
+
+Is probably something like this:
+
+	mysql --port=3306 --protocol=TCP -u root -h 127.0.0.1 -p
+
+Restoring a DB backup might look like:
+
+	mysql --port=3306 --protocol=TCP -u root -h 127.0.0.1 -p wordpress < db.sql
 
 ## What's left to do ##
 
-Get a database dump restored into your dev machine! You can grab one of the auto-dumps from S3 and do it from your dev machine because the mysql port is forwarded thru the VM. This way we don't have to put the S3 secret keys inside the VM or config files. But maybe there's an ENV variable way to automate the DB pull.
+- Auto-restore a database dump. We keep DB snapshots in S3, so this is probably a s3cmd command and some minor plumbing.
+
+- Lots of other things.
+
