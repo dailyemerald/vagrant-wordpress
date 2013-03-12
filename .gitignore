@@ -2,5 +2,6 @@
 .vagrant
 *.lock
 cookbooks/*
+wp-root/*
 themes/*
 tmp
