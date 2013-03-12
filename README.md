@@ -16,7 +16,7 @@ Then:
 - *librarian-chef install* pulls the cookbooks from opscode. 
 - *vagrant up* runs the recipes fetched by Librarian and boots the VM. It also sets some config stuff, like setting the **root mysql password to 'helloworld'**
 
-### Connecting to ysql from the host machine ##
+### Connecting to mysql from the host machine ##
 
 Is probably something like this:
 
